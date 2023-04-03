@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMI Calculator</title>
     <style>
+        /* Add styles to the page */
         body{
             text-align: center;
             background-image: url('EMI-calculator.png');
@@ -41,6 +42,7 @@
 <body>
     <form>
         <br><br><br><br><br><br><br><br><br>
+        <!-- Labels and input fields for loan amount, annual interest rate, and tenure -->
         <label for="loanAmount">Loan Amount:</label><br><br>
         <input type="number" id="loanAmount" name="loanAmount"><br><br>
         <label for="interestRate">Annual Interest Rate:</label><br>
@@ -49,25 +51,30 @@
         <input type="number" id="tenure" name="tenure"><br><br>
     </form> 
     <br>
+    <!-- Button to trigger the EMI calculation -->
     <div style="border: 2px solid #d54377; padding: 10px; display: inline-block;">
         <button onclick="calculateEMI()">Calculate EMI</button><br><br>
     </div>
     
-
+    <!-- Display the calculated EMI, total interest, and total payment -->
     <p><b>Total interest to be paid: </b><span id="totalInterest"></span></p>
     <p><b>Total payment (principal + interest): </b><span id="totalPayment"></span></p>
     <p><b>EMI per month: </b><span id="emi"></span></p>
+    <!-- Script to calculate the EMI based on user input -->
     <script>
         function calculateEMI() {
+            // Get the user input for loan amount, interest rate, and tenure
             var loanAmount = document.getElementById("loanAmount").value;
             var interestRate = document.getElementById("interestRate").value;
             var tenure = document.getElementById("tenure").value;
 
+            // Calculate the monthly interest rate, EMI, total payment, and total interest
             var monthlyInterestRate = interestRate / (12 * 100);
             var emi = (loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) / (Math.pow(1 + monthlyInterestRate, tenure) - 1);
             var totalPayment = emi * tenure;
             var totalInterest = totalPayment - loanAmount;
 
+            // Display the calculated EMI, total interest, and total payment
             document.getElementById("totalInterest").innerHTML = totalInterest.toFixed(2);
             document.getElementById("totalPayment").innerHTML = totalPayment.toFixed(2);
             document.getElementById("emi").innerHTML = emi.toFixed(2);
